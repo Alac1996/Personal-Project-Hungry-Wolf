@@ -4,7 +4,7 @@ import { useAuth } from "../../hooks/use-auth";
 export default function RedirectIfAuthenticated({ children }) {
   const { authUser } = useAuth();
   if (authUser) {
-    <Navigate to="/" />;
+    return <Navigate to="/" />;
   }
   return children;
 }

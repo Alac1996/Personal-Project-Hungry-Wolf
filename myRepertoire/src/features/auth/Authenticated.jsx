@@ -3,8 +3,9 @@ import { useAuth } from "../../hooks/use-auth";
 
 export default function Authenticated({ children }) {
   const { authUser } = useAuth();
+  console.log(authUser);
   if (!authUser) {
-    <Navigate to="/login" />;
+    return <Navigate to="/login" />;
   }
   return children;
 }

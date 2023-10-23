@@ -6,9 +6,7 @@ import Layout from "../layout/Layout";
 import Register from "../pages/Register";
 import HomePage from "../pages/HomePage";
 import Login from "../pages/Login";
-import PizzaPage from "../pages/PizzaPage";
-import SideDishesPage from "../pages/SideDishesPage";
-import BeveragesPage from "../pages/BeveragesPage";
+import CategoryPage from "../pages/CategoryPage";
 import ProductPage from "../pages/ProductPage";
 import CartPage from "../pages/CartPage";
 import OrderPage from "../pages/OrderPage";
@@ -45,9 +43,6 @@ const router = createBrowserRouter([
     ),
     children: [
       { path: "", element: <HomePage /> },
-      { path: "pizza", element: <PizzaPage /> },
-      { path: "sideDish", element: <SideDishesPage /> },
-      { path: "beverage", element: <BeveragesPage /> },
       { path: "product/:productId", element: <ProductPage /> },
       { path: "cart", element: <CartPage /> },
       { path: "order", element: <OrderPage /> },
@@ -55,6 +50,7 @@ const router = createBrowserRouter([
       { path: "QR", element: <QRPage /> },
       { path: "paid", element: <PaymentCompletePage /> },
       { path: "account", element: <UserAccountInfoPage /> },
+      { path: "/:category", element: <CategoryPage /> },
     ],
   },
 ]);

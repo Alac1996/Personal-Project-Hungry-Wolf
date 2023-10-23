@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAuth } from "../../hooks/use-auth";
 import RegisterInput from "./RegisterInput";
 import Joi from "joi";
+import InputErrorMessage from "./InputErrorMessage";
 
 const registerSchema = Joi.object({
   username: Joi.string().trim().required(),
@@ -19,7 +20,7 @@ const registerSchema = Joi.object({
   phone_No: Joi.string()
     .pattern(/^[0-9]{10}$/)
     .required(),
-  Address: Joi.string().required(),
+  address: Joi.string().required(),
 });
 
 const validateRegister = (input) => {
@@ -45,7 +46,7 @@ export default function RegisterForm() {
     address: "",
   });
 
-  //   const [error, setError] = useState({});
+  const [error, setError] = useState({});
 
   const { register } = useAuth();
 
@@ -55,6 +56,12 @@ export default function RegisterForm() {
 
   const handleSubmitRegister = (e) => {
     e.preventDefault();
+    console.log(input);
+    const validationError = validateRegister(input);
+    if (validationError) {
+      return setError(validationError);
+    }
+    setError({});
     register(input).catch((error) => {
       console.log(error);
     });
@@ -78,7 +85,9 @@ export default function RegisterForm() {
               placeholder="Enter Username"
               onChange={handleChangeInput}
               value={input.username}
+              hasError={error.username}
             />
+            {error.username && <InputErrorMessage message={error.username} />}
           </div>
         </div>
 
@@ -93,7 +102,9 @@ export default function RegisterForm() {
               placeholder="Enter Password"
               onChange={handleChangeInput}
               value={input.password}
+              hasError={error.password}
             />
+            {error.password && <InputErrorMessage message={error.password} />}
           </div>
         </div>
 
@@ -108,7 +119,11 @@ export default function RegisterForm() {
               placeholder="confirmPassword"
               value={input.confirmPassword}
               onChange={handleChangeInput}
+              hasError={error.confirmPassword}
             />
+            {error.confirmPassword && (
+              <InputErrorMessage message={error.confirmPassword} />
+            )}
           </div>
         </div>
 
@@ -122,7 +137,9 @@ export default function RegisterForm() {
               placeholder="Enter Email"
               value={input.email}
               onChange={handleChangeInput}
+              hasError={error.email}
             />
+            {error.email && <InputErrorMessage message={error.email} />}
           </div>
         </div>
 
@@ -136,13 +153,15 @@ export default function RegisterForm() {
               placeholder="Enter Phone Number"
               value={input.phone_No}
               onChange={handleChangeInput}
+              hasError={error.phone_No}
             />
+            {error.phone_No && <InputErrorMessage message={error.phone_No} />}
           </div>
         </div>
 
         <div className="grid gap-1">
           <div>
-            <p className="text-sm font-inter">Address</p>
+            <p className="text-sm font-inter">address</p>
           </div>
           <div>
             <RegisterInput
@@ -150,7 +169,9 @@ export default function RegisterForm() {
               placeholder="Enter Address"
               value={input.address}
               onChange={handleChangeInput}
+              hasError={error.address}
             />
+            {error.address && <InputErrorMessage message={error.address} />}
           </div>
         </div>
         <div className="max-auto col-span-full">
