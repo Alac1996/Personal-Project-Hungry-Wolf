@@ -112,7 +112,7 @@ export default function ProductPage() {
                     onChange={() => handleSizeChange("Medium")}
                   />
                   <label
-                    htmlFor="mediumCheckbox"
+                    htmlFor="mediumRadio"
                     className="text-xl font-semibold"
                   >
                     Medium &nbsp; (399 ฿)
@@ -127,10 +127,7 @@ export default function ProductPage() {
                     checked={selectedSize === "Large"}
                     onChange={() => handleSizeChange("Large")}
                   />
-                  <label
-                    htmlFor="mediumRadio"
-                    className="text-xl font-semibold"
-                  >
+                  <label htmlFor="largeRadio" className="text-xl font-semibold">
                     Large &nbsp; (499 ฿)
                   </label>
                 </div>
@@ -150,10 +147,7 @@ export default function ProductPage() {
                     checked={selectedCrust === "Thick_soft"}
                     onChange={() => handleCrustChange("Thick_soft")}
                   />
-                  <label
-                    htmlFor="mediumCheckbox"
-                    className="text-xl font-semibold"
-                  >
+                  <label htmlFor="thickRadio" className="text-xl font-semibold">
                     Thick Soft
                   </label>
                 </div>
@@ -166,10 +160,7 @@ export default function ProductPage() {
                     checked={selectedCrust === "Thin_crispy"}
                     onChange={() => handleCrustChange("Thin_crispy")}
                   />
-                  <label
-                    htmlFor="mediumCheckbox"
-                    className="text-xl font-semibold"
-                  >
+                  <label htmlFor="thinRadio" className="text-xl font-semibold">
                     Thin Crispy
                   </label>
                 </div>

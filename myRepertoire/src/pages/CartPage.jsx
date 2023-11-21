@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import CartItem from "../features/product/CartItem";
 
 import { useCart } from "../hooks/use-cart";
@@ -5,9 +6,15 @@ import { useCart } from "../hooks/use-cart";
 export default function CartPage() {
   const { cartItem } = useCart();
 
+  const navigate = useNavigate();
+
   const total = cartItem.reduce((acc, item) => {
     return acc + item.price * item.quantity;
   }, 0);
+
+  const handleOrderClick = async () => {
+    navigate("/order");
+  };
 
   return (
     <div className="mt-3 flex flex-col gap-8 flex-1">
@@ -21,9 +28,12 @@ export default function CartPage() {
         <>
           <div className="border-t mt-4 pt-2 flex justify-between items-center bg-black ring-2 ring-white">
             <div className="text-lg font-extrabold text-white">Total</div>
-            <div className="text-white text-lg px-4 py-2">{total}</div>
+            <div className="text-white text-lg px-4 py-2">{total} ฿</div>
           </div>
-          <button className="mt-4 border bg-black text-white text-lg px-4 py-2">
+          <button
+            className="mt-4 border bg-black text-white text-lg px-4 py-2"
+            onClick={handleOrderClick}
+          >
             Order
           </button>
         </>

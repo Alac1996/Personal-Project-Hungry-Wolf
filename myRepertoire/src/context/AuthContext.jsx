@@ -31,13 +31,28 @@ export default function AuthContextProvider({ children }) {
     setAuthUser(res.data.user);
   };
 
+  const updateUser = async (userId, updatedUserInfo) => {
+    console.log(updatedUserInfo);
+    try {
+      const response = await axios.put(
+        `/auth/editUser/${userId}`,
+        updatedUserInfo
+      );
+      setAuthUser(response.data.user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const logout = () => {
     removeAccessToken();
     setAuthUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ register, authUser, login, logout }}>
+    <AuthContext.Provider
+      value={{ register, authUser, login, logout, updateUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
